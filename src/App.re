@@ -1,2 +1,9 @@
 [@react.component]
-let make = () => <h1> {React.string("hello")} </h1>;
+let make = () => {
+  let url = ReasonReactRouter.useUrl();
+
+  switch (url.path) {
+  | ["email", id] => <PageEmail emailId=id />
+  | _ => <PageInbox />
+  };
+};

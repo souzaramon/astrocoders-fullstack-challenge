@@ -1,4 +1,5 @@
 {
+  "repository": "https://github.com/souzaramon/astrocoders-fullstack-challenge",
   "scripts": {
     "start": "concurrently -k \"yarn run start:bsb\" \"yarn run start:webpack\"",
     "start:bsb": "bsb -clean-world -make-world -w",
