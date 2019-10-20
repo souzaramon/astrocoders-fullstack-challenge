@@ -1,0 +1,23 @@
+{
+  "name": "astrocoders-fullstack-challenge",
+  "reason": {
+    "react-jsx": 3
+  },
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "package-specs": [
+    {
+      "module": "es6",
+      "in-source": false
+    }
+  ],
+  "suffix": ".bs.js",
+  "namespace": true,
+  "bs-dependencies": [
+    "bs-css",
+    "reason-react"
+  ],
+  "refmt": 3
+}
