@@ -40,7 +40,7 @@ module Styles = {
             : [],
         ),
       ]),
-      acOverrides,
+      style(acOverrides),
     ]);
 };
 
@@ -62,7 +62,7 @@ let make =
       ~acRounded=rounded,
       ~acHidden=hidden,
       ~acDisabled=disabled,
-      ~acOverrides=Css.style(overrides),
+      ~acOverrides=overrides,
     )}
     disabled>
     children
