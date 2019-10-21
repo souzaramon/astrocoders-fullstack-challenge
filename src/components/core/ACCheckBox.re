@@ -1,4 +1,4 @@
-type value =
+type validValues =
   | Checked
   | Partially
   | UnChecked;
