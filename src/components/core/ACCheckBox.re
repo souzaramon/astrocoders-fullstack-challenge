@@ -4,7 +4,7 @@ type validValues =
   | UnChecked;
 
 [@react.component]
-let make = (~value, ~onClick, ~color=Css.hex("000")) => {
+let make = (~value, ~onClick=_ => (), ~color=Css.hex("000")) => {
   <ACBtn color onClick>
     <i className="material-icons">
       {switch (value) {
