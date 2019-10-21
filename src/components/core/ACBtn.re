@@ -48,6 +48,7 @@ module Styles = {
 let make =
     (
       ~children,
+      ~onClick=_ => (),
       ~size=36,
       ~color=Css.hex("fff"),
       ~rounded=true,
@@ -56,6 +57,7 @@ let make =
       ~overrides=[],
     ) => {
   <button
+    onClick
     className={Styles.container(
       ~acSize=size,
       ~acColor=color,
