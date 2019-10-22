@@ -1,14 +1,18 @@
+type positions =
+  | Bottom
+  | Top;
+
 module Styles = {
   open Css;
 
-  let container = (~acPosition, ~acPointer) => {
+  let container = (~acPosition, ~acPointer, ~acDisabled) => {
     let horizontalCenter = [left(pct(-25.0))];
-    let baseOffset = px(-20);
+    let baseOffset = px(-25);
 
     let computedAcPositon =
       switch (acPosition) {
-      | "top" => [top(baseOffset), ...horizontalCenter]
-      | _ => [bottom(baseOffset), ...horizontalCenter]
+      | Top => [top(baseOffset), ...horizontalCenter]
+      | Bottom => [bottom(baseOffset), ...horizontalCenter]
       };
 
     style([
@@ -19,7 +23,13 @@ module Styles = {
       hover([
         selector(
           ".ACTooltip-text",
-          [visibility(visible), opacity(1.0), transform(scale(1.0, 1.0))],
+          !acDisabled
+            ? [
+              visibility(visible),
+              opacity(1.0),
+              transform(scale(1.0, 1.0)),
+            ]
+            : [],
         ),
       ]),
       selector(
@@ -39,10 +49,10 @@ module Styles = {
           selector(
             "span",
             [
-              background(rgba(0, 0, 0, 0.6)),
-              padding(px(1)),
+              background(rgba(0, 0, 0, 0.7)),
+              padding(px(4)),
               borderRadius(px(3)),
-              fontSize(rem(0.65)),
+              fontSize(rem(0.8)),
               color(white),
               whiteSpace(nowrap),
             ],
@@ -55,8 +65,14 @@ module Styles = {
 };
 
 [@react.component]
-let make = (~children, ~position="bottom", ~text, ~pointer="auto") => {
-  <div className={Styles.container(~acPosition=position, ~acPointer=pointer)}>
+let make =
+    (~children, ~position=Bottom, ~text, ~pointer="auto", ~disabled=false) => {
+  <div
+    className={Styles.container(
+      ~acPosition=position,
+      ~acPointer=pointer,
+      ~acDisabled=disabled,
+    )}>
     <div className="ACTooltip-text">
       <span> {React.string(text)} </span>
     </div>

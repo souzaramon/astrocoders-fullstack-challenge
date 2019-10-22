@@ -31,7 +31,7 @@ let make = () =>
           Css.minWidth(Css.px(238)),
         ],
       )}>
-      <ACTooltip text="Toggle" position="bottom">
+      <ACTooltip text="Toggle">
         <ACBtn
           overrides=[
             Css.marginLeft(Css.px(10)),
@@ -40,18 +40,18 @@ let make = () =>
           <i className="material-icons"> {React.string("menu")} </i>
         </ACBtn>
       </ACTooltip>
-      <ACTooltip text="Gmail" position="bottom">
+      <ACTooltip text="Gmail">
         <img className=Styles.logo src="/assets/logo.png" alt="Logo" />
       </ACTooltip>
     </div>
     <ACFilter />
     <div className={Styles.box(~acOverrides=[])}>
-      <ACTooltip text="Applications" position="bottom">
+      <ACTooltip text="Applications">
         <ACBtn overrides=[Css.marginLeft(Css.px(10))]>
           <i className="material-icons"> {React.string("apps")} </i>
         </ACBtn>
       </ACTooltip>
-      <ACTooltip text="Notifications" position="bottom">
+      <ACTooltip text="Notifications">
         <ACBtn
           overrides=[
             Css.marginRight(Css.px(10)),
@@ -60,7 +60,7 @@ let make = () =>
           <ACBadge count=42 />
         </ACBtn>
       </ACTooltip>
-      <ACTooltip text="OCaml" position="bottom">
+      <ACTooltip text="OCaml s2">
         <ACBtn
           overrides=[
             Css.marginLeft(Css.px(10)),

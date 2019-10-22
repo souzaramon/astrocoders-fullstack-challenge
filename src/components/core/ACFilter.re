@@ -50,7 +50,7 @@ let make = (~placeholder="Search mail") => {
       onChange={e => setSearchTerm(ReactEvent.Form.target(e)##value)}
       placeholder
     />
-    <ACTooltip text="Clear search" position="bottom">
+    <ACTooltip text="Clear search" disabled={searchTerm === ""}>
       <ACBtn onClick={_ => setSearchTerm(_ => "")} hidden={searchTerm === ""}>
         <i className="material-icons"> {React.string("close")} </i>
       </ACBtn>
