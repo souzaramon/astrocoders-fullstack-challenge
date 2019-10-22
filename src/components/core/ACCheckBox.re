@@ -4,8 +4,8 @@ type validValues =
   | UnChecked;
 
 [@react.component]
-let make = (~value, ~onClick=_ => (), ~color=Css.hex("000")) => {
-  <ACBtn color onClick>
+let make = (~value, ~onClick=_ => (), ~color=Css.hex("000"), ~overrides=[]) => {
+  <ACBtn color onClick overrides>
     <i className="material-icons">
       {switch (value) {
        | Checked => React.string("check_box")
