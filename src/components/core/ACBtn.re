@@ -18,7 +18,7 @@ module Styles = {
         maxHeight(px(acSize)),
         minWidth(px(acSize)),
         minHeight(px(acSize)),
-        hover([before([transform(scale(0.6, 0.6)), opacity(0.122)])]),
+        hover([before([transform(scale(0.6, 0.6)), opacity(0.222)])]),
         borderRadius(acRounded ? pct(50.0) : zero),
         color(acColor),
         before(
