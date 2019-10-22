@@ -18,7 +18,7 @@ module Styles = {
       style(acOverrides),
     ]);
 
-  let logo = style([width(px(109)), height(px(40))]);
+  let logo = style([width(px(109)), height(px(40)), marginTop(px(5))]);
 };
 
 [@react.component]
@@ -31,33 +31,43 @@ let make = () =>
           Css.minWidth(Css.px(238)),
         ],
       )}>
-      <ACBtn
-        overrides=[
-          Css.marginLeft(Css.px(10)),
-          Css.marginRight(Css.px(10)),
-        ]>
-        <i className="material-icons"> {React.string("menu")} </i>
-      </ACBtn>
-      <img className=Styles.logo src="/assets/logo.png" alt="Logo" />
+      <ACTooltip text="Toggle" position="bottom">
+        <ACBtn
+          overrides=[
+            Css.marginLeft(Css.px(10)),
+            Css.marginRight(Css.px(10)),
+          ]>
+          <i className="material-icons"> {React.string("menu")} </i>
+        </ACBtn>
+      </ACTooltip>
+      <ACTooltip text="Gmail" position="bottom">
+        <img className=Styles.logo src="/assets/logo.png" alt="Logo" />
+      </ACTooltip>
     </div>
     <ACFilter />
     <div className={Styles.box(~acOverrides=[])}>
-      <ACBtn>
-        <i className="material-icons"> {React.string("apps")} </i>
-      </ACBtn>
-      <ACBtn
-        overrides=[
-          Css.marginRight(Css.px(10)),
-          Css.marginLeft(Css.px(10)),
-        ]>
-        <ACBadge count=42 />
-      </ACBtn>
-      <ACBtn
-        overrides=[
-          Css.marginRight(Css.px(10)),
-          Css.marginLeft(Css.px(10)),
-        ]>
-        <ACAvatar url="/assets/profile.png" />
-      </ACBtn>
+      <ACTooltip text="Applications" position="bottom">
+        <ACBtn overrides=[Css.marginLeft(Css.px(10))]>
+          <i className="material-icons"> {React.string("apps")} </i>
+        </ACBtn>
+      </ACTooltip>
+      <ACTooltip text="Notifications" position="bottom">
+        <ACBtn
+          overrides=[
+            Css.marginRight(Css.px(10)),
+            Css.marginLeft(Css.px(10)),
+          ]>
+          <ACBadge count=42 />
+        </ACBtn>
+      </ACTooltip>
+      <ACTooltip text="OCaml" position="bottom">
+        <ACBtn
+          overrides=[
+            Css.marginLeft(Css.px(10)),
+            Css.marginRight(Css.px(10)),
+          ]>
+          <ACAvatar url="/assets/profile.png" />
+        </ACBtn>
+      </ACTooltip>
     </div>
   </header>;
