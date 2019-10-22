@@ -13,7 +13,8 @@ module Styles = {
         display(flexBox),
         justifyContent(center),
         alignItems(center),
-        fontSize(rem(0.7)),
+        fontSize(rem(0.8)),
+        fontWeight(bold),
       ]),
       style(acOverrides),
     ]);
@@ -21,7 +22,7 @@ module Styles = {
 
 [@react.component]
 let make =
-    (~count, ~size=20, ~backgroundColor=Css.hex("db4437"), ~overrides=[]) => {
+    (~count, ~size=24, ~backgroundColor=Css.hex("db4437"), ~overrides=[]) => {
   <div
     className={Styles.container(
       ~acSize=size,
