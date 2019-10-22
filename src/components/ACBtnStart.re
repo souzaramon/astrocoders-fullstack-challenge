@@ -15,10 +15,11 @@ module Styles = {
         color(hex("3c4043")),
         paddingRight(px(24)),
         borderRadius(px(24)),
-        fontWeight(bolder),
         fontSize(rem(0.875)),
         backgroundColor(hex("fff")),
-        unsafe("letterSpacing", ".25px"),
+        unsafe("letterSpacing", "0.25px"),
+        fontFamily("Google Sans"),
+        fontWeight(bolder),
         before([
           unsafe("content", ""),
           display(block),
