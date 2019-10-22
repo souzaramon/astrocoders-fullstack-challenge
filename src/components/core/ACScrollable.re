@@ -4,7 +4,6 @@ module Styles = {
   let container =
     style([
       width(pct(100.0)),
-      paddingTop(px(1)),
       paddingRight(px(5)),
       height(pct(100.0)),
       overflowY(auto),
