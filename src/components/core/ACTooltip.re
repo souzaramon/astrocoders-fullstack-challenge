@@ -19,7 +19,6 @@ module Styles = {
       unsafe("cursor", acPointer),
       display(inlineBlock),
       position(relative),
-      zIndex(10),
       hover([
         selector(
           ".ACTooltip-text",
@@ -35,6 +34,7 @@ module Styles = {
       selector(
         ".ACTooltip-text",
         [
+          zIndex(100),
           display(flexBox),
           justifyContent(center),
           alignItems(center),
