@@ -3,8 +3,9 @@ module Styles = {
 
   let container = style([minWidth(px(256))]);
 
-  let list =
+  let links =
     style([
+      unsafe("listStyle", "none"),
       display(flexBox),
       alignItems(center),
       flexDirection(column),
@@ -13,7 +14,7 @@ module Styles = {
       selector(".material-icons", [fontSize(rem(1.2))]),
     ]);
 
-  let item =
+  let link =
     style([
       unsafe("cursor", "pointer"),
       width(pct(100.0)),
@@ -26,7 +27,6 @@ module Styles = {
       hover([backgroundColor(rgba(241, 243, 244, 0.15))]),
       display(flexBox),
       alignItems(center),
-      // backgroundColor(rgba(241, 243, 244, 0.24)),
       color(hex("fff")),
       unsafe("textShadow", "0 1px 2px rgba(0,0,0,.65)"),
       fontSize(rem(0.875)),
@@ -46,36 +46,23 @@ let make = (~dense=false) =>
         Css.marginLeft(Css.px(10)),
       ]
     />
-    <ul className=Styles.list>
-      <li className={"active " ++ Styles.item}>
-        <i className="material-icons"> {React.string("inbox")} </i>
-        <span> {React.string("Inbox")} </span>
-      </li>
-      <li className=Styles.item>
-        <i className="material-icons"> {React.string("star")} </i>
-        <span> {React.string("Starred")} </span>
-      </li>
-      <li className=Styles.item>
-        <i className="material-icons"> {React.string("access_time")} </i>
-        <span> {React.string("Snoozed")} </span>
-      </li>
-      <li className=Styles.item>
-        <i className="material-icons"> {React.string("label_important")} </i>
-        <span> {React.string("Important")} </span>
-      </li>
-      <li className=Styles.item>
-        <i className="material-icons"> {React.string("send")} </i>
-        <span> {React.string("Sent")} </span>
-      </li>
-      <li className=Styles.item>
-        <i className="material-icons">
-          {React.string("insert_drive_file")}
-        </i>
-        <span> {React.string("Draft")} </span>
-      </li>
-      <li className=Styles.item>
-        <i className="material-icons"> {React.string("label")} </i>
-        <span> {React.string("Categories")} </span>
-      </li>
+    <ul className=Styles.links>
+      {Belt.Array.map(
+         [|
+           ("Inbox", "inbox"),
+           ("Starred", "star"),
+           ("Snoozed", "access_time"),
+           ("Important", "label_important"),
+           ("Sent", "send"),
+           ("Draft", "insert_drive_file"),
+           ("Categories", "label"),
+         |],
+         ((label, icon)) =>
+         <li key=label className=Styles.link>
+           <i className="material-icons"> {React.string(icon)} </i>
+           <span> {React.string(label)} </span>
+         </li>
+       )
+       ->ReasonReact.array}
     </ul>
   </div>;
