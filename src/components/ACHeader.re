@@ -60,13 +60,13 @@ let make = () =>
           <ACBadge count=42 />
         </ACBtn>
       </ACTooltip>
-      <ACTooltip text="OCaml s2">
+      <ACTooltip text="Reason s2">
         <ACBtn
           overrides=[
             Css.marginLeft(Css.px(10)),
             Css.marginRight(Css.px(10)),
           ]>
-          <ACAvatar url="/assets/profile.png" />
+          <ACAvatar url="/assets/profile.jpg" />
         </ACBtn>
       </ACTooltip>
     </div>
