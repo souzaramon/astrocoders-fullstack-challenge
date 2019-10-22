@@ -1,9 +1,9 @@
 module Styles = {
   open Css;
 
-  let container = (~acPosition) => {
+  let container = (~acPosition, ~acPointer) => {
     let horizontalCenter = [left(pct(-25.0))];
-    let baseOffset = px(-10);
+    let baseOffset = px(-20);
 
     let computedAcPositon =
       switch (acPosition) {
@@ -12,8 +12,10 @@ module Styles = {
       };
 
     style([
+      unsafe("cursor", acPointer),
       display(inlineBlock),
       position(relative),
+      zIndex(10),
       hover([
         selector(
           ".ACTooltip-text",
@@ -40,8 +42,9 @@ module Styles = {
               background(rgba(0, 0, 0, 0.6)),
               padding(px(1)),
               borderRadius(px(3)),
-              fontSize(rem(0.6)),
+              fontSize(rem(0.65)),
               color(white),
+              whiteSpace(nowrap),
             ],
           ),
           ...computedAcPositon,
@@ -52,8 +55,8 @@ module Styles = {
 };
 
 [@react.component]
-let make = (~children, ~position="bottom", ~text) => {
-  <div className={Styles.container(~acPosition=position)}>
+let make = (~children, ~position="bottom", ~text, ~pointer="auto") => {
+  <div className={Styles.container(~acPosition=position, ~acPointer=pointer)}>
     <div className="ACTooltip-text">
       <span> {React.string(text)} </span>
     </div>
