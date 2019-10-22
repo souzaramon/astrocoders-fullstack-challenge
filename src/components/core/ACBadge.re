@@ -4,6 +4,7 @@ module Styles = {
   let container = (~acSize, ~acBackgroundColor, ~acOverrides) =>
     merge([
       style([
+        userSelect(none),
         width(px(acSize)),
         height(px(acSize)),
         backgroundColor(acBackgroundColor),
