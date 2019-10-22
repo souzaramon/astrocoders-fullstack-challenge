@@ -5,6 +5,7 @@ module Styles = {
       (~acSize, ~acColor, ~acRounded, ~acHidden, ~acDisabled, ~acOverrides) =>
     merge([
       style([
+        userSelect(none),
         unsafe("all", "unset"),
         visibility(acHidden ? hidden : visible),
         opacity(acDisabled ? 0.4 : 1.0),
