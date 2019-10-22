@@ -1,7 +1,7 @@
 module Styles = {
   open Css;
 
-  let container = style([width(px(256))]);
+  let container = style([minWidth(px(256))]);
 
   let list =
     style([display(flexBox), alignItems(center), flexDirection(column)]);
