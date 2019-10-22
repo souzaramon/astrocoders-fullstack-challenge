@@ -4,7 +4,14 @@ module Styles = {
   let container = style([minWidth(px(256))]);
 
   let list =
-    style([display(flexBox), alignItems(center), flexDirection(column)]);
+    style([
+      display(flexBox),
+      alignItems(center),
+      flexDirection(column),
+      paddingRight(px(15)),
+      selector(".active", [backgroundColor(rgba(241, 243, 244, 0.24))]),
+      selector(".material-icons", [fontSize(rem(1.2))]),
+    ]);
 
   let item =
     style([
@@ -40,7 +47,7 @@ let make = (~dense=false) =>
       ]
     />
     <ul className=Styles.list>
-      <li className=Styles.item>
+      <li className={"active " ++ Styles.item}>
         <i className="material-icons"> {React.string("inbox")} </i>
         <span> {React.string("Inbox")} </span>
       </li>
