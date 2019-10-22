@@ -16,10 +16,10 @@ module Styles = {
       selector(
         "span",
         [
+          unsafe("textShadow", "rgba(0,0,0,0.8) 0 0 3px"),
           color(rgba(255, 255, 255, 0.70)),
           fontSize(rem(0.75)),
           lineHeight(px(20)),
-          unsafe("textShadow", "rgba(0,0,0,0.8) 0 0 3px"),
           hover([textDecoration(underline)]),
         ],
       ),

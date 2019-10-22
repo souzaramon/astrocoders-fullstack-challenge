@@ -5,11 +5,11 @@ module Styles = {
       (~acSize, ~acColor, ~acRounded, ~acHidden, ~acDisabled, ~acOverrides) =>
     merge([
       style([
-        userSelect(none),
         unsafe("all", "unset"),
+        unsafe("cursor", acDisabled ? "normal" : "pointer"),
+        userSelect(none),
         visibility(acHidden ? hidden : visible),
         opacity(acDisabled ? 0.4 : 1.0),
-        unsafe("cursor", acDisabled ? "normal" : "pointer"),
         overflow(hidden),
         position(relative),
         display(flexBox),

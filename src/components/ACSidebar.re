@@ -17,6 +17,7 @@ module Styles = {
   let link =
     style([
       unsafe("cursor", "pointer"),
+      unsafe("textShadow", "0 1px 2px rgba(0,0,0,.65)"),
       width(pct(100.0)),
       height(px(32)),
       paddingLeft(px(26)),
@@ -28,7 +29,6 @@ module Styles = {
       display(flexBox),
       alignItems(center),
       color(hex("fff")),
-      unsafe("textShadow", "0 1px 2px rgba(0,0,0,.65)"),
       fontSize(rem(0.875)),
       fontWeight(bold),
       textTransform(capitalize),
@@ -49,16 +49,16 @@ let make = (~dense=false) =>
     <ul className=Styles.links>
       {Belt.Array.map(
          [|
-           ("Inbox", "inbox"),
-           ("Starred", "star"),
-           ("Snoozed", "access_time"),
-           ("Important", "label_important"),
-           ("Sent", "send"),
-           ("Draft", "insert_drive_file"),
-           ("Categories", "label"),
+           ("Inbox", "inbox", "active"),
+           ("Starred", "star", ""),
+           ("Snoozed", "access_time", ""),
+           ("Important", "label_important", ""),
+           ("Sent", "send", ""),
+           ("Draft", "insert_drive_file", ""),
+           ("Categories", "label", ""),
          |],
-         ((label, icon)) =>
-         <li key=label className=Styles.link>
+         ((label, icon, override)) =>
+         <li key=label className={Styles.link ++ " " ++ override}>
            <i className="material-icons"> {React.string(icon)} </i>
            <span> {React.string(label)} </span>
          </li>
