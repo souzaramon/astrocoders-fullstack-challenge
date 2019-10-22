@@ -50,9 +50,11 @@ let make = (~placeholder="Search mail") => {
       onChange={e => setSearchTerm(ReactEvent.Form.target(e)##value)}
       placeholder
     />
-    <ACBtn onClick={_ => setSearchTerm(_ => "")} hidden={searchTerm === ""}>
-      <i className="material-icons"> {React.string("close")} </i>
-    </ACBtn>
+    <ACTooltip text="Clear search" position="bottom">
+      <ACBtn onClick={_ => setSearchTerm(_ => "")} hidden={searchTerm === ""}>
+        <i className="material-icons"> {React.string("close")} </i>
+      </ACBtn>
+    </ACTooltip>
     <ACBtn overrides=[Css.marginRight(Css.px(10))] disabled=true>
       <i className="material-icons"> {React.string("arrow_drop_down")} </i>
     </ACBtn>
