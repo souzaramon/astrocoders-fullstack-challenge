@@ -1,13 +1,14 @@
 module Styles = {
   open Css;
 
-  let container = (~acHeight) =>
+  let container =
     style([
-      height(acHeight),
       width(pct(100.0)),
-      backgroundColor(gray),
+      paddingTop(px(1)),
+      paddingRight(px(5)),
+      height(pct(100.0)),
       overflowY(auto),
-      selector("::-webkit-scrollbar", [width(px(16)), height(px(16))]),
+      selector("::-webkit-scrollbar", [width(px(12)), height(px(12))]),
       selector(
         "::-webkit-scrollbar-track",
         [
@@ -29,9 +30,13 @@ module Styles = {
         ],
       ),
     ]);
+
+  let content = (~acOverrides) => style(acOverrides);
 };
 
 // Todo: resizable
 [@react.component]
-let make = (~children, ~height, ~resizable=false) =>
-  <div className={Styles.container(~acHeight=height)}> children </div>;
+let make = (~children, ~resizable=false, ~overrides=[]) =>
+  <div className=Styles.container>
+    <div className={Styles.content(~acOverrides=overrides)}> children </div>
+  </div>;
