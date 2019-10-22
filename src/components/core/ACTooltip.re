@@ -7,7 +7,7 @@ module Styles = {
 
   let container = (~acPosition, ~acPointer, ~acDisabled) => {
     let horizontalCenter = [left(pct(-25.0))];
-    let baseOffset = px(-25);
+    let baseOffset = px(-30);
 
     let computedAcPositon =
       switch (acPosition) {
