@@ -4,3 +4,4 @@ yarn-*.log
 .DS_Store
 .merlin
 .bsb.lock
+.graphql_ppx_cache
