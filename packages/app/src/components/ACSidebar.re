@@ -2,7 +2,13 @@ module Styles = {
   open Css;
 
   let container = (~acDense) =>
-    style(!acDense ? [minWidth(px(256))] : [maxWidth(px(72))]);
+    style([
+      minWidth(!acDense ? px(256) : px(72)),
+      maxWidth(!acDense ? px(256) : px(72)),
+      transitionProperty("all"),
+      transitionTimingFunction(ease),
+      transitionDuration(200),
+    ]);
 
   let links = (~acDark, ~acDense) =>
     style([

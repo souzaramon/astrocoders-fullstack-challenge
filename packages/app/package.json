@@ -1,9 +1,14 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "repository": "https://github.com/souzaramon/astrocoders-fullstack-challenge",
+  "scripts": {
+    "start": "concurrently -k \"yarn run start:bsb\" \"yarn run start:webpack\"",
+    "start:bsb": "bsb -clean-world -make-world -w",
+    "start:webpack": "webpack-dev-server --port 3000"
+  },
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.3",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "reason-react": "^0.7.0",
     "reason-apollo-hooks": "^2.7.0",
     "reason-apollo": "^0.17.0",

@@ -59,9 +59,7 @@ let make = (~emails=[||]) => {
          onClick={_ => ReasonReact.Router.push("/mail/1")}>
          <div className=Styles.leftActions>
            <ACCheckBox value=ACCheckBox.UnChecked />
-           <ACTooltip label="Unstarred">
-             <ACCheckBoxFav value=ACCheckBoxFav.UnChecked />
-           </ACTooltip>
+           <ACCheckBoxFav value=ACCheckBoxFav.UnChecked />
          </div>
          <span className="from"> {React.string("Tester")} </span>
          <span className="subject">

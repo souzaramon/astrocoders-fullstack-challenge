@@ -19,8 +19,7 @@
     "reason-react",
     "reason-apollo-hooks",
     "reason-apollo",
-    "bs-css",
-    "bs-onegraph-auth"
+    "bs-css"
   ],
   "ppx-flags": [
     "graphql_ppx/ppx"
