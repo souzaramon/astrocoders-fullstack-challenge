@@ -23,7 +23,7 @@ module.exports = {
   devServer: {
     compress: true,
     contentBase: path.join(__dirname, 'build/'),
-    port: process.env.PORT || 8000,
+    port: process.env.PORT_APP || 8000,
     historyApiFallback: true,
   }
 }
