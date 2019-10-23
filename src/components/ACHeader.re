@@ -26,7 +26,7 @@ module Styles = {
 };
 
 [@react.component]
-let make = (~dark=true) => {
+let make = (~dark=true, ~cbClickToggleBtn=_ => ()) => {
   <header className={Styles.container(~acDark=dark)}>
     <div
       className={Styles.box(
@@ -37,6 +37,7 @@ let make = (~dark=true) => {
       )}>
       <ACTooltip label="Toggle">
         <ACBtn
+          onClick=cbClickToggleBtn
           color={dark ? Css.hex("fff") : Css.hex("202124")}
           overrides=[
             Css.marginLeft(Css.px(10)),

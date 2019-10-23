@@ -27,10 +27,15 @@ module Styles = {
 
 [@react.component]
 let make = (~children, ~theme) => {
+  let (sidebarIsDense, setSidebarIsDense) = React.useState(() => false);
+
   <div className={Styles.container(~acOverrides=[theme.background])}>
-    <ACHeader dark={theme.dark} />
+    <ACHeader
+      dark={theme.dark}
+      cbClickToggleBtn={_ => setSidebarIsDense(_ => !sidebarIsDense)}
+    />
     <div className=Styles.content>
-      <ACSidebar dark={theme.dark} />
+      <ACSidebar dark={theme.dark} dense=sidebarIsDense />
       <div className=Styles.slot> children </div>
     </div>
   </div>;

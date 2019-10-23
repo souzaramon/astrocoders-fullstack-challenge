@@ -1,7 +1,7 @@
 module Styles = {
   open Css;
 
-  let container = (~acOverrides) =>
+  let container = (~acDense, ~acOverrides) =>
     merge([
       style([
         unsafe("all", "unset"),
@@ -14,7 +14,7 @@ module Styles = {
         display(inlineFlex),
         alignItems(center),
         color(hex("3c4043")),
-        paddingRight(px(24)),
+        paddingRight(!acDense ? px(24) : px(0)),
         borderRadius(px(24)),
         fontSize(rem(0.875)),
         backgroundColor(hex("fff")),
@@ -32,16 +32,18 @@ module Styles = {
           ),
           backgroundRepeat(noRepeat),
           height(px(48)),
-          minWidth(px(56)),
+          minWidth(!acDense ? px(56) : px(48)),
         ]),
         hover([backgroundColor(hex("fafafb"))]),
+        selector("span", !acDense ? [] : [display(none)]),
       ]),
       style(acOverrides),
     ]);
 };
 
 [@react.component]
-let make = (~label="Compose", ~overrides=[]) =>
-  <button className={Styles.container(~acOverrides=overrides)}>
-    {React.string(label)}
+let make = (~label="Compose", ~dense=false, ~overrides=[]) =>
+  <button
+    className={Styles.container(~acDense=dense, ~acOverrides=overrides)}>
+    <span> {React.string(label)} </span>
   </button>;
