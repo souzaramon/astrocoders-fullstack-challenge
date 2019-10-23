@@ -8,6 +8,7 @@ module.exports = {
   mode: isProd ? 'production' : 'development',
   output: {
     path: path.join(__dirname, 'build/'),
+    publicPath: '/',
     filename: 'index.js',
   },
   plugins: [
