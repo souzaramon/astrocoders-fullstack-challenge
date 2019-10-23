@@ -1,7 +1,9 @@
 {
+  "name": "astrocoders-fullstack-challenge-app",
+  "version": "1.0.0",
   "repository": "https://github.com/souzaramon/astrocoders-fullstack-challenge",
   "scripts": {
-    "start": "concurrently -k \"yarn run start:bsb\" \"yarn run start:webpack\"",
+    "start": "npm-run-all --parallel start:bsb start:webpack",
     "start:bsb": "bsb -clean-world -make-world -w",
     "start:webpack": "webpack-dev-server --port 3000"
   },

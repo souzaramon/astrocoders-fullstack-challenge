@@ -1,6 +1,12 @@
 # Astrocoders Fullstack Challenge
 
-> I have chosen the ReasonML path to complete the challenge.
+> ReasonML, Typescript and GraphQL
+
+## Packages
+
+- [**app**](/packages/app): FrontEnd aplication client, written in ReasonML.
+- [**server**](/packages/app): Backend aplication, writen in Typescript and uses ApolloServer.
+
 
 ## Started at
 

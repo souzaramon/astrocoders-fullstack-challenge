@@ -5,3 +5,4 @@ yarn-*.log
 .merlin
 .bsb.lock
 .graphql_ppx_cache
+dist
