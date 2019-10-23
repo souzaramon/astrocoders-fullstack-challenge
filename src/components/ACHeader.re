@@ -1,7 +1,7 @@
 module Styles = {
   open Css;
 
-  let container =
+  let container = (~acDark) =>
     style([
       display(flexBox),
       alignItems(center),
@@ -9,7 +9,11 @@ module Styles = {
       width(pct(100.0)),
       height(px(64)),
       padding(px(8)),
-      borderBottom(px(1), solid, rgba(255, 255, 255, 0.1)),
+      borderBottom(
+        px(1),
+        solid,
+        acDark ? rgba(255, 255, 255, 0.1) : rgba(0, 0, 0, 0.1),
+      ),
     ]);
 
   let box = (~acOverrides) =>
@@ -22,8 +26,8 @@ module Styles = {
 };
 
 [@react.component]
-let make = () =>
-  <header className=Styles.container>
+let make = (~dark=true) => {
+  <header className={Styles.container(~acDark=dark)}>
     <div
       className={Styles.box(
         ~acOverrides=[
@@ -31,27 +35,34 @@ let make = () =>
           Css.minWidth(Css.px(238)),
         ],
       )}>
-      <ACTooltip text="Toggle">
+      <ACTooltip label="Toggle">
         <ACBtn
+          color={dark ? Css.hex("fff") : Css.hex("202124")}
           overrides=[
             Css.marginLeft(Css.px(10)),
             Css.marginRight(Css.px(10)),
           ]>
-          <i className="material-icons"> {React.string("menu")} </i>
+          <ACIcon name="menu" />
         </ACBtn>
       </ACTooltip>
-      <ACTooltip text="Gmail">
-        <img className=Styles.logo src="/assets/logo.png" alt="Logo" />
+      <ACTooltip label="Gmail">
+        <img
+          className=Styles.logo
+          src={dark ? "/assets/logo.png" : "/assets/logo-light.png"}
+          alt="Logo"
+        />
       </ACTooltip>
     </div>
-    <ACFilter />
+    <ACFilter dark />
     <div className={Styles.box(~acOverrides=[])}>
-      <ACTooltip text="Applications">
-        <ACBtn overrides=[Css.marginLeft(Css.px(10))]>
-          <i className="material-icons"> {React.string("apps")} </i>
+      <ACTooltip label="Applications">
+        <ACBtn
+          color={dark ? Css.hex("fff") : Css.hex("202124")}
+          overrides=[Css.marginLeft(Css.px(10))]>
+          <ACIcon name="apps" />
         </ACBtn>
       </ACTooltip>
-      <ACTooltip text="Notifications">
+      <ACTooltip label="Notifications">
         <ACBtn
           overrides=[
             Css.marginRight(Css.px(10)),
@@ -60,7 +71,7 @@ let make = () =>
           <ACBadge count=42 />
         </ACBtn>
       </ACTooltip>
-      <ACTooltip text="Reason s2">
+      <ACTooltip label="Reason s2">
         <ACBtn
           overrides=[
             Css.marginLeft(Css.px(10)),
@@ -71,3 +82,4 @@ let make = () =>
       </ACTooltip>
     </div>
   </header>;
+};

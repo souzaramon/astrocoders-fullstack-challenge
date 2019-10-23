@@ -3,21 +3,28 @@ module Styles = {
 
   let container = style([minWidth(px(256))]);
 
-  let links =
+  let links = (~acDark) =>
     style([
       unsafe("listStyle", "none"),
       display(flexBox),
       alignItems(center),
       flexDirection(column),
       paddingRight(px(15)),
-      selector(".active", [backgroundColor(rgba(241, 243, 244, 0.24))]),
+      selector(
+        ".active",
+        [
+          backgroundColor(
+            acDark ? rgba(241, 243, 244, 0.24) : rgba(0, 0, 0, 0.10),
+          ),
+        ],
+      ),
       selector(".material-icons", [fontSize(rem(1.2))]),
     ]);
 
-  let link =
+  let link = (~acDark) =>
     style([
       unsafe("cursor", "pointer"),
-      unsafe("textShadow", "0 1px 2px rgba(0,0,0,.65)"),
+      unsafe("textShadow", acDark ? "0 1px 2px rgba(0,0,0,.65)" : "none"),
       width(pct(100.0)),
       height(px(32)),
       paddingLeft(px(26)),
@@ -25,10 +32,14 @@ module Styles = {
       whiteSpace(nowrap),
       borderTopRightRadius(px(16)),
       borderBottomRightRadius(px(16)),
-      hover([backgroundColor(rgba(241, 243, 244, 0.15))]),
+      hover([
+        backgroundColor(
+          acDark ? rgba(241, 243, 244, 0.15) : rgba(0, 0, 0, 0.05),
+        ),
+      ]),
       display(flexBox),
       alignItems(center),
-      color(hex("fff")),
+      color(acDark ? Css.hex("fff") : Css.hex("767676")),
       fontSize(rem(0.875)),
       fontWeight(bold),
       textTransform(capitalize),
@@ -37,7 +48,7 @@ module Styles = {
 };
 
 [@react.component]
-let make = (~dense=false) =>
+let make = (~dense=false, ~dark=true) => {
   <div className=Styles.container>
     <ACBtnStart
       overrides=[
@@ -46,7 +57,7 @@ let make = (~dense=false) =>
         Css.marginLeft(Css.px(10)),
       ]
     />
-    <ul className=Styles.links>
+    <ul className={Styles.links(~acDark=dark)}>
       {Belt.Array.map(
          [|
            ("Inbox", "inbox", "active"),
@@ -58,11 +69,13 @@ let make = (~dense=false) =>
            ("Categories", "label", ""),
          |],
          ((label, icon, override)) =>
-         <li key=label className={Styles.link ++ " " ++ override}>
-           <i className="material-icons"> {React.string(icon)} </i>
+         <li
+           key=label className={Styles.link(~acDark=dark) ++ " " ++ override}>
+           <ACIcon name=icon />
            <span> {React.string(label)} </span>
          </li>
        )
        ->ReasonReact.array}
     </ul>
   </div>;
+};

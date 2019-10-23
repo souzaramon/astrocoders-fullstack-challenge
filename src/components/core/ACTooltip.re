@@ -21,7 +21,7 @@ module Styles = {
       position(relative),
       hover([
         selector(
-          ".ACTooltip-text",
+          ".ACTooltip-label",
           !acDisabled
             ? [
               visibility(visible),
@@ -32,7 +32,7 @@ module Styles = {
         ),
       ]),
       selector(
-        ".ACTooltip-text",
+        ".ACTooltip-label",
         [
           zIndex(100),
           display(flexBox),
@@ -66,15 +66,22 @@ module Styles = {
 
 [@react.component]
 let make =
-    (~children, ~position=Bottom, ~text, ~pointer="auto", ~disabled=false) => {
+    (
+      ~children,
+      ~position=Bottom,
+      ~label,
+      ~pointer="auto",
+      ~dark=false,
+      ~disabled=false,
+    ) => {
   <div
     className={Styles.container(
       ~acPosition=position,
       ~acPointer=pointer,
       ~acDisabled=disabled,
     )}>
-    <div className="ACTooltip-text">
-      <span> {React.string(text)} </span>
+    <div className="ACTooltip-label">
+      <span> {React.string(label)} </span>
     </div>
     children
   </div>;

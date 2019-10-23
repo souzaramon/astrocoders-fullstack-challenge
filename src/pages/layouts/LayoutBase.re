@@ -1,12 +1,21 @@
+open Types;
+
 module Styles = {
   open Css;
 
-  let container =
-    style([
-      width(pct(100.0)),
-      height(pct(100.0)),
-      display(flexBox),
-      flexDirection(column),
+  let container = (~acOverrides) =>
+    merge([
+      style([
+        unsafe("backgroundPosition", "center"),
+        width(pct(100.0)),
+        height(pct(100.0)),
+        display(flexBox),
+        flexDirection(column),
+        overflowX(hidden),
+        backgroundRepeat(noRepeat),
+        backgroundSize(cover),
+      ]),
+      style(acOverrides),
     ]);
 
   let content =
@@ -17,11 +26,12 @@ module Styles = {
 };
 
 [@react.component]
-let make = (~children) =>
-  <div className=Styles.container>
-    <ACHeader />
+let make = (~children, ~theme) => {
+  <div className={Styles.container(~acOverrides=[theme.background])}>
+    <ACHeader dark={theme.dark} />
     <div className=Styles.content>
-      <ACSidebar />
+      <ACSidebar dark={theme.dark} />
       <div className=Styles.slot> children </div>
     </div>
   </div>;
+};

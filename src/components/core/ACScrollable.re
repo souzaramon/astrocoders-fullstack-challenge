@@ -1,7 +1,7 @@
 module Styles = {
   open Css;
 
-  let container =
+  let container = (~acDark) =>
     style([
       width(pct(100.0)),
       paddingRight(px(5)),
@@ -12,8 +12,14 @@ module Styles = {
         "::-webkit-scrollbar-track",
         [
           hover([
-            backgroundColor(rgba(255, 255, 255, 0.1)),
-            border(px(1), solid, rgba(255, 255, 255, 0.4)),
+            backgroundColor(
+              acDark ? rgba(255, 255, 255, 0.1) : rgba(0, 0, 0, 0.1),
+            ),
+            border(
+              px(1),
+              solid,
+              acDark ? rgba(255, 255, 255, 0.4) : rgba(0, 0, 0, 0.4),
+            ),
           ]),
         ],
       ),
@@ -24,8 +30,14 @@ module Styles = {
       selector(
         "::-webkit-scrollbar-thumb",
         [
-          backgroundColor(rgba(255, 255, 255, 0.4)),
-          hover([backgroundColor(rgba(255, 255, 255, 0.7))]),
+          backgroundColor(
+            acDark ? rgba(255, 255, 255, 0.4) : rgba(0, 0, 0, 0.4),
+          ),
+          hover([
+            backgroundColor(
+              acDark ? rgba(255, 255, 255, 0.7) : rgba(0, 0, 0, 0.7),
+            ),
+          ]),
         ],
       ),
     ]);
@@ -35,7 +47,7 @@ module Styles = {
 
 // Todo: resizable
 [@react.component]
-let make = (~children, ~resizable=false, ~overrides=[]) =>
-  <div className=Styles.container>
+let make = (~children, ~resizable=false, ~dark=true, ~overrides=[]) =>
+  <div className={Styles.container(~acDark=dark)}>
     <div className={Styles.content(~acOverrides=overrides)}> children </div>
   </div>;

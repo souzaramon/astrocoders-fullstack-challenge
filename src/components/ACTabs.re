@@ -29,7 +29,7 @@ module Styles = {
 let make = () =>
   <header className=Styles.container>
     <div className=Styles.tab>
-      <i className="material-icons"> {React.string("chat")} </i>
+      <ACIcon name="chat" />
       <span> {React.string("Primary")} </span>
     </div>
   </header>;

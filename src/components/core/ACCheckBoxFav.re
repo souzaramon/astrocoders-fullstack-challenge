@@ -17,11 +17,14 @@ let make = (~value, ~onClick=_ => (), ~color=Css.hex("000")) => {
     };
 
   <ACBtn color=acColor onClick>
-    <i className={"material-icons " ++ Styles.label}>
-      {switch (value) {
-       | Checked => React.string("star")
-       | UnChecked => React.string("star_border")
-       }}
-    </i>
+    <ACIcon
+      className=Styles.label
+      name={
+        switch (value) {
+        | Checked => "star"
+        | UnChecked => "star_border"
+        }
+      }
+    />
   </ACBtn>;
 };

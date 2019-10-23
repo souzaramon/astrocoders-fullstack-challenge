@@ -1,7 +1,7 @@
 module Styles = {
   open Css;
 
-  let container =
+  let container = (~acDark) =>
     style([
       unsafe("cursor", "pointer"),
       width(pct(100.0)),
@@ -16,8 +16,8 @@ module Styles = {
       selector(
         "span",
         [
-          unsafe("textShadow", "rgba(0,0,0,0.8) 0 0 3px"),
-          color(rgba(255, 255, 255, 0.70)),
+          unsafe("textShadow", acDark ? "rgba(0,0,0,0.8) 0 0 3px" : ""),
+          color(acDark ? rgba(255, 255, 255, 0.70) : hex("767676")),
           fontSize(rem(0.75)),
           lineHeight(px(20)),
           hover([textDecoration(underline)]),
@@ -27,8 +27,8 @@ module Styles = {
 };
 
 [@react.component]
-let make = () =>
-  <footer className=Styles.container>
+let make = (~dark=true) =>
+  <footer className={Styles.container(~acDark=dark)}>
     <span> {React.string({js|0 GB (0%) of 15 GB used|js})} </span>
     <span>
       {React.string({js|Terms · Privacy · Program Policies|js})}
