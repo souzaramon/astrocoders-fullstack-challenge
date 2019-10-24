@@ -1,8 +1,42 @@
-import { ApolloServer } from 'apollo-server'
+import { ApolloServer, gql } from 'apollo-server'
+import { getTweetsByHashtag } from './services/twit'
 
-import typeDefs from './typedefs'
-import resolvers from './resolvers'
+const instance = new ApolloServer({
+  typeDefs: gql`
+    type Entities {
+      hashtags: [Hashtag]!
+    }
 
-const instance = new ApolloServer({ typeDefs, resolvers, playground: true });
+    type Hashtag {
+      text: String!
+    }
+
+    type User {
+      name: String!,
+      screen_name: String!
+      profile_image_url_https: String!
+    }
+
+    type Tweet {
+      id: String!
+      text: String!
+      user: User!
+      created_at: String!
+      entities: Entities!
+    }
+
+    type Query {
+      tweets: [Tweet!]!
+    }
+`,
+
+  resolvers: {
+    Query: {
+      tweets: async () => await getTweetsByHashtag("mars"),
+    },
+  },
+
+  playground: true
+});
 
 export default instance
