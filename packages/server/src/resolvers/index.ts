@@ -1,16 +1,7 @@
-const tweets = [
-  {
-    text: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling',
-  },
-  {
-    text: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
-];
+import data from './mock'
 
 export default {
   Query: {
-    tweets: () => tweets,
+    tweets: () => data,
   },
 }
