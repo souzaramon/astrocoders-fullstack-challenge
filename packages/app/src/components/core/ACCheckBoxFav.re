@@ -29,6 +29,7 @@ let make = (~value, ~onClick=_ => (), ~color=Css.hex("000")) => {
       }
     }>
     <ACBtn
+      color=acColor
       onClick={_ =>
         switch (iValue) {
         | UnChecked => setIValue(_ => Checked)
