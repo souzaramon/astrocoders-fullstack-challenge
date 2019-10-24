@@ -53,7 +53,7 @@ module Styles = {
       minWidth(px(0)),
       color(hex("5f6368")),
       fontWeight(normal),
-      media("(max-width: 1037px)", [whiteSpace(normal)]),
+      media("(max-width: 1037px)", [whiteSpace(normal), padding(px(10))]),
       media("(min-width: 1037px)", [width(px(400))]),
     ]);
 
@@ -108,8 +108,14 @@ let make = () => {
          data##tweets
          ->Belt.Array.keepMap(tweet =>
              if (filter === ""
-                 || Js.String.includes(filter, tweet##user##screen_name)
-                 || Js.String.includes(filter, tweet##text)) {
+                 || Js.String.includes(
+                      String.uppercase(filter),
+                      String.uppercase(tweet##user##screen_name),
+                    )
+                 || Js.String.includes(
+                      String.uppercase(filter),
+                      String.uppercase(tweet##text),
+                    )) {
                Some(
                  <li
                    key={tweet##id}
@@ -134,7 +140,11 @@ let make = () => {
                      {React.string(tweet##text)}
                    </div>
                    <div className=Styles.piece3>
-                     <span> {React.string(tweet##created_at)} </span>
+                     <span>
+                       {React.string(
+                          Utils.fromISOStringToLocale(tweet##created_at),
+                        )}
+                     </span>
                    </div>
                  </li>,
                );

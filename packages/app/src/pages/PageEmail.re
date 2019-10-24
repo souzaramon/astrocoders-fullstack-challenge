@@ -11,7 +11,7 @@ module Styles = {
       display(flexBox),
       width(pct(100.0)),
       padding(px(30)),
-      backgroundColor(rgba(255, 255, 255, 0.902)),
+      backgroundColor(white),
     ]);
 
   let box = (~acOverrides) =>
@@ -22,9 +22,15 @@ module Styles = {
 
   let tweet =
     style([
+      display(flexBox),
+      flexDirection(column),
       selector(
         "h3",
         [marginBottom(px(15)), selector("small", [fontSize(rem(0.7))])],
+      ),
+      selector(
+        "img",
+        [objectFit(contain), height(px(109)), width(px(89))],
       ),
     ]);
 };
@@ -86,9 +92,15 @@ let make = (~theme, ~id) => {
              switch (data##tweet) {
              | Some(tweet) =>
                <div className=Styles.tweet>
+                 <img src="/assets/twitter-card.jpg" alt="card twitter" />
                  <h3>
                    {React.string(tweet##user##screen_name)}
-                   <small> {React.string(" - " ++ tweet##created_at)} </small>
+                   <small>
+                     {React.string(
+                        " - "
+                        ++ Utils.fromISOStringToLocale(tweet##created_at),
+                      )}
+                   </small>
                  </h3>
                  <p> {React.string(tweet##text)} </p>
                </div>
