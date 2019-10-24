@@ -58,7 +58,7 @@ let make = (~theme) => {
             Css.flexDirection(Css.column),
           ]>
           <ACTabs />
-          <ACListEmails emails=Mock.emails />
+          <ACEmailList />
           <ACFooter dark={theme.dark} />
         </ACScrollable>
       </div>
