@@ -60,7 +60,10 @@ let make =
       ~overrides=[],
     ) => {
   <button
-    onClick
+    onClick={e => {
+      ReactEvent.Mouse.stopPropagation(e);
+      onClick();
+    }}
     className={Styles.container(
       ~acSize=size,
       ~acColor=color,
