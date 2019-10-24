@@ -1,17 +1,14 @@
-open Types;
-
-let theme = {
-  dark: true,
-  background: Css.backgroundImage(Css.url("/assets/bg.jpg")),
-};
-
 [@react.component]
 let make = () => {
   let url = ReasonReactRouter.useUrl();
+  let theme = Themes.sky;
 
   <ReasonApolloHooks.ApolloProvider client=GraphQLClient.client>
-    {switch (url.path) {
-     | _ => <PageInbox theme />
-     }}
+    <LayoutBase theme>
+      {switch (url.path) {
+       | ["mail", id] => <PageEmail theme id />
+       | _ => <PageInbox theme />
+       }}
+    </LayoutBase>
   </ReasonApolloHooks.ApolloProvider>;
 };
