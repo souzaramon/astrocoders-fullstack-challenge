@@ -12,8 +12,7 @@ module Styles = {
 let make = (~value, ~onClick=_ => (), ~color=Css.hex("000")) => {
   // I'll implement this just because is the easest way of show this working on screen wihout thinking
   // about implementation, but that is not right
-  Js.log(value);
-  let (iValue, setIValue) = React.useState(() => UnChecked);
+  let (iValue, setIValue) = React.useState(() => value);
 
   let acColor =
     switch (iValue) {
