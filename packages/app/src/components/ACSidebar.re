@@ -7,7 +7,7 @@ module Styles = {
       maxWidth(!acDense ? px(256) : px(72)),
       transitionProperty("all"),
       transitionTimingFunction(ease),
-      transitionDuration(200),
+      transitionDuration(150),
     ]);
 
   let links = (~acDark, ~acDense) =>
