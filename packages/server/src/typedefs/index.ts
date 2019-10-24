@@ -24,5 +24,6 @@ export default gql`
 
   type Query {
     tweets: [Tweet!]!
+    tweet(id: String): Tweet!
   }
 `
