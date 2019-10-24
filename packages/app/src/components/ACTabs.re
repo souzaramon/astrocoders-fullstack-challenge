@@ -3,7 +3,7 @@ module Styles = {
 
   let container =
     style([
-      backgroundColor(rgba(255, 255, 255, 0.902)),
+      backgroundColor(white),
       height(px(56)),
       padding(px(3)),
       display(flexBox),
