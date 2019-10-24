@@ -39,9 +39,7 @@ module Styles = {
 };
 
 [@react.component]
-let make = (~placeholder="Search mail", ~dark=true) => {
-  let (searchTerm, setSearchTerm) = React.useState(() => "");
-
+let make = (~placeholder="Search mail", ~value="", ~onChange, ~dark=true) => {
   <div className={Styles.container(~acDark=dark)}>
     <ACBtn
       color={dark ? Css.hex("fff") : Css.hex("202124")}
@@ -51,15 +49,22 @@ let make = (~placeholder="Search mail", ~dark=true) => {
     </ACBtn>
     <input
       className={Styles.input(~acDark=dark)}
-      value=searchTerm
-      onChange={e => setSearchTerm(ReactEvent.Form.target(e)##value)}
+      value
+      onChange={e => {
+        let value = ReactEvent.Form.target(e)##value;
+
+        switch (value) {
+        | Some(v) => onChange(v)
+        | None => onChange("")
+        };
+      }}
       placeholder
     />
-    <ACTooltip label="Clear search" disabled={searchTerm === ""}>
+    <ACTooltip label="Clear search" disabled={value === ""}>
       <ACBtn
         color={dark ? Css.hex("fff") : Css.hex("202124")}
-        onClick={_ => setSearchTerm(_ => "")}
-        hidden={searchTerm === ""}>
+        onClick={_ => onChange("")}
+        hidden={value === ""}>
         <ACIcon name="close" />
       </ACBtn>
     </ACTooltip>
