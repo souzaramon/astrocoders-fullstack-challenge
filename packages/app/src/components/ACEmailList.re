@@ -66,6 +66,16 @@ module Styles = {
       justifyContent(flexEnd),
       media("(max-width: 1037px)", [display(none)]),
     ]);
+
+  let noResult =
+    style([
+      width(pct(100.0)),
+      height(px(100)),
+      display(flexBox),
+      justifyContent(center),
+      alignItems(center),
+      backgroundColor(hex("f5f5f5")),
+    ]);
 };
 
 module TweetsQueryConfig = [%graphql
@@ -75,15 +85,9 @@ module TweetsQueryConfig = [%graphql
       id
       text
       user {
-        name
         screen_name
       }
       created_at
-      entities {
-        hashtags {
-          text
-        }
-      }
     }
   }
 |}
@@ -94,37 +98,56 @@ module TweetsQuery = ReasonApolloHooks.Query.Make(TweetsQueryConfig);
 [@react.component]
 let make = () => {
   let (_simple, full) = TweetsQuery.use();
+  let (filter, _dispatch) = React.useContext(ContextFilter.context);
 
   <ul className=Styles.container>
     {switch (full) {
      | {loading: true, data: None} => <p> {React.string("Loading...")} </p>
      | {data: Some(data)} =>
-       data##tweets
-       ->Belt.Array.map(tweet =>
-           <li
-             key={tweet##id}
-             className=Styles.item
-             onClick={_ => Js.log("teste")}>
-             <div className=Styles.piece1>
-               <ACCheckBox
-                 value=ACCheckBox.UnChecked
-                 color={Css.rgba(0, 0, 0, 0.2)}
-               />
-               <ACCheckBoxFav
-                 value=ACCheckBoxFav.UnChecked
-                 color={Css.rgba(0, 0, 0, 0.2)}
-               />
-               <div className=Styles.name>
-                 <span> {React.string(tweet##user##screen_name)} </span>
-               </div>
-             </div>
-             <div className=Styles.piece2> {React.string(tweet##text)} </div>
-             <div className=Styles.piece3>
-               <span> {React.string(tweet##created_at)} </span>
-             </div>
-           </li>
-         )
-       ->React.array
+       let filterredLi =
+         data##tweets
+         ->Belt.Array.keepMap(tweet =>
+             if (filter === ""
+                 || Js.String.includes(filter, tweet##user##screen_name)
+                 || Js.String.includes(filter, tweet##text)) {
+               Some(
+                 <li
+                   key={tweet##id}
+                   className=Styles.item
+                   onClick={_ =>
+                     ReasonReactRouter.push("/mail/" ++ tweet##id)
+                   }>
+                   <div className=Styles.piece1>
+                     <ACCheckBox
+                       value=ACCheckBox.UnChecked
+                       color={Css.rgba(0, 0, 0, 0.2)}
+                     />
+                     <ACCheckBoxFav
+                       value=ACCheckBoxFav.UnChecked
+                       color={Css.rgba(0, 0, 0, 0.2)}
+                     />
+                     <div className=Styles.name>
+                       <span> {React.string(tweet##user##screen_name)} </span>
+                     </div>
+                   </div>
+                   <div className=Styles.piece2>
+                     {React.string(tweet##text)}
+                   </div>
+                   <div className=Styles.piece3>
+                     <span> {React.string(tweet##created_at)} </span>
+                   </div>
+                 </li>,
+               );
+             } else {
+               None;
+             }
+           );
+
+       Belt.Array.length(filterredLi) > 0
+         ? filterredLi->React.array
+         : <div className=Styles.noResult>
+             {React.string("No results to show :(")}
+           </div>;
 
      | _ => <div />
      }}
