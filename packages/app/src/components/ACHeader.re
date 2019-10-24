@@ -1,3 +1,5 @@
+open Types;
+
 module Styles = {
   open Css;
 
@@ -27,6 +29,10 @@ module Styles = {
 
 [@react.component]
 let make = (~dark=true, ~cbClickToggleBtn=_ => ()) => {
+  let (filter, dispatch) = React.useContext(ContextFilter.context);
+
+  let handleDispatch = value => dispatch(FilterOnChange(value));
+
   <header className={Styles.container(~acDark=dark)}>
     <div
       className={Styles.box(
@@ -54,7 +60,7 @@ let make = (~dark=true, ~cbClickToggleBtn=_ => ()) => {
         />
       </ACTooltip>
     </div>
-    <ACFilter dark />
+    <ACFilter dark value=filter onChange=handleDispatch />
     <div className={Styles.box(~acOverrides=[])}>
       <ACTooltip label="Applications">
         <ACBtn
