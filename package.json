@@ -5,8 +5,8 @@
   ],
   "scripts": {
     "start": "npm-run-all --parallel start:server start:app",
-    "start:server": "cd ./packages/app && yarn start",
-    "start:app": "cd ./packages/server && yarn start"
+    "start:server": "cd ./packages/server && yarn start",
+    "start:app": "cd ./packages/app && yarn start"
   },
   "dependencies": {
     "bs-css": "^10.0.1",
