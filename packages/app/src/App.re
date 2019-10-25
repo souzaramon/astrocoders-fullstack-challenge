@@ -30,6 +30,12 @@ let make = () => {
        | _ => <PageInbox theme data />
        }}
     </LayoutBase>
-  | _ => <span> {React.string("Opps")} </span>
+  | _ =>
+    <span>
+      {React.string("Are the backend server running? Please check the: ")}
+      <a href="http://localhost:8001" target="_blank">
+        {React.string("http://localhost:8001")}
+      </a>
+    </span>
   };
 };
