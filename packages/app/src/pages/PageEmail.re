@@ -6,32 +6,10 @@ module Styles = {
   let container =
     style([display(flexBox), width(pct(100.0)), height(pct(100.0))]);
 
-  let content =
-    style([
-      display(flexBox),
-      width(pct(100.0)),
-      padding(px(30)),
-      backgroundColor(white),
-    ]);
-
   let box = (~acOverrides) =>
     merge([
       style([display(flexBox), width(pct(100.0)), height(pct(100.0))]),
       style(acOverrides),
-    ]);
-
-  let tweet =
-    style([
-      display(flexBox),
-      flexDirection(column),
-      selector(
-        "h3",
-        [marginBottom(px(15)), selector("small", [fontSize(rem(0.7))])],
-      ),
-      selector(
-        "img",
-        [objectFit(contain), height(px(109)), width(px(89))],
-      ),
     ]);
 };
 
@@ -66,12 +44,10 @@ let make = (~theme, ~data, ~id) => {
       <ACScrollable
         dark={theme.dark}
         overrides=[Css.display(Css.flexBox), Css.flexDirection(Css.column)]>
-        <div className=Styles.content>
-          {switch (tweet) {
-           | Some(t) => <ACEMail tweet=t />
-           | _ => <span> {React.string("Oops")} </span>
-           }}
-        </div>
+        {switch (tweet) {
+         | Some(t) => <ACEMail tweet=t />
+         | _ => <span> {React.string("Oops")} </span>
+         }}
         <ACFooter dark={theme.dark} />
       </ACScrollable>
     </div>

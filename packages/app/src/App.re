@@ -6,6 +6,7 @@ module TweetsQueryConfig = [%graphql
       text
       user {
         screen_name
+        profile_image_url_https
       }
       created_at
     }
