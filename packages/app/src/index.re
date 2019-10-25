@@ -12,4 +12,9 @@ Css.(
   global("html, body, #root", [width(pct(100.0)), height(pct(100.0))]),
 );
 
-ReactDOMRe.renderToElementWithId(<App />, "root");
+ReactDOMRe.renderToElementWithId(
+  <ReasonApolloHooks.ApolloProvider client=GraphQLClient.client>
+    <App />
+  </ReasonApolloHooks.ApolloProvider>,
+  "root",
+);

@@ -52,9 +52,13 @@
                 }
               ],
               "type": {
-                "kind": "OBJECT",
-                "name": "Tweet",
-                "ofType": null
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Tweet",
+                  "ofType": null
+                }
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -189,6 +193,22 @@
             },
             {
               "name": "screen_name",
+              "description": "",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "profile_image_url_https",
               "description": "",
               "args": [],
               "type": {
