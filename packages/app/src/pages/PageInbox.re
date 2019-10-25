@@ -14,7 +14,7 @@ module Styles = {
 };
 
 [@react.component]
-let make = (~theme) => {
+let make = (~theme, ~data) => {
   <div className=Styles.container>
     <div
       className={Styles.box(~acOverrides=[Css.flexDirection(Css.column)])}>
@@ -54,7 +54,7 @@ let make = (~theme) => {
         dark={theme.dark}
         overrides=[Css.display(Css.flexBox), Css.flexDirection(Css.column)]>
         <ACTabs />
-        <ACEmailList />
+        <ACEmailList data />
         <ACFooter dark={theme.dark} />
       </ACScrollable>
     </div>

@@ -35,27 +35,9 @@ module Styles = {
     ]);
 };
 
-module TweetsQueryConfig = [%graphql
-  {|
-  query ($tweetId: String!) {
-    tweet(id: $tweetId) {
-      text
-      user {
-        screen_name
-      }
-      created_at
-    }
-  }
-|}
-];
-
-module TweetsQuery = ReasonApolloHooks.Query.Make(TweetsQueryConfig);
-
 [@react.component]
-let make = (~theme, ~id) => {
-  let getTweetById = TweetsQueryConfig.make(~tweetId=id, ());
-  let (_simple, full) =
-    TweetsQuery.use(~variables=getTweetById##variables, ());
+let make = (~theme, ~data, ~id) => {
+  let tweet = data##tweets |> Js.Array.find(t => t##id === id);
 
   <div className=Styles.container>
     <div
@@ -85,28 +67,9 @@ let make = (~theme, ~id) => {
         dark={theme.dark}
         overrides=[Css.display(Css.flexBox), Css.flexDirection(Css.column)]>
         <div className=Styles.content>
-          {switch (full) {
-           | {loading: true, data: None} =>
-             <p> {React.string("Loading...")} </p>
-           | {data: Some(data)} =>
-             switch (data##tweet) {
-             | Some(tweet) =>
-               <div className=Styles.tweet>
-                 <img src="/assets/twitter-card.jpg" alt="card twitter" />
-                 <h3>
-                   {React.string(tweet##user##screen_name)}
-                   <small>
-                     {React.string(
-                        " - "
-                        ++ Utils.fromISOStringToLocale(tweet##created_at),
-                      )}
-                   </small>
-                 </h3>
-                 <p> {React.string(tweet##text)} </p>
-               </div>
-             | None => <p> {React.string("Opss")} </p>
-             }
-           | _ => <div />
+          {switch (tweet) {
+           | Some(t) => <ACEMail tweet=t />
+           | _ => <span> {React.string("Oops")} </span>
            }}
         </div>
         <ACFooter dark={theme.dark} />
