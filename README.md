@@ -13,6 +13,7 @@
 - Scrolbar (just look that scrollbar rolf)
 
 ## To run
+- Setup the env variables at /packges/server
 - install dependencies with yarn or npm
 
 ```bash
