@@ -1,8 +1,8 @@
-# Astrocoders Fullstack Challenge
+# job-challenge-astrocoders
 
-> ReasonML, Typescript and GraphQL
+- [**INSTRUCTIONS.md**](/INSTRUCTIONS.md): Project specification.
 
-## Cool Features
+## Features
 
 - It's almost responsive, try to resize the screen
 - Filter emails with the search bar
