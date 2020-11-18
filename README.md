@@ -6,11 +6,10 @@
 
 - It's almost responsive, try to resize the screen
 - Filter emails with the search bar
-- Tooltips everywhere (i love it)
+- Tooltips
 - Can select emails (just it, I think that's cool) imb4: The selected all emails does not work :(
 - Toggle the sidebar
-- Switch themes on App.re (Yeah, no time to implement it)
-- Scrolbar (just look that scrollbar rolf)
+- Switch themes on App.re (Yep, no time to implement it)
 
 ## To run
 - Setup the env variables at /packges/server
