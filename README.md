@@ -29,7 +29,7 @@ The graphql playground will start on port 8001 and the client aplication will ru
 ## Packages
 
 - [**app**](/packages/app): FrontEnd aplication client, written in ReasonML.
-- [**server**](/packages/app): Backend aplication, writen in Typescript and uses ApolloServer.
+- [**server**](/packages/server): Backend aplication, writen in Typescript and uses ApolloServer.
 
 ## Deadline
 
